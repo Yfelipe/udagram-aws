@@ -1,0 +1,57 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+  aws-cli: circleci/aws-cli@2.0.3
+  eb: circleci/aws-elastic-beanstalk@2.0.1
+jobs:
+  build-deploy-frontend:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - node/install:
+          install-yarn: true
+      - aws-cli/setup
+      - checkout
+      # install frontend dependencies
+      - run:
+          name: Install front-end dependecies
+          command: |
+            npm run frontend:install
+      # build the frontend
+      - run:
+          name: Build front-end
+          command: |
+            npm run frontend:build
+      # deploy to AWS S3 via deploy.sh
+      - run:
+          name: Deploy front-end
+          command: |
+            npm run deploy
+  build-deploy-backend:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - node/install:
+          install-yarn: true
+      - eb/setup
+      - checkout
+      # install backend dependencies
+      - run:
+          name: Install back-end Dependecies
+          command: |
+            npm run backend:install
+      # build the backend
+      - run:
+          name: Build back-end
+          command: |
+            npm run backend:build
+      # deploy with AWS Elastic Beanstalk
+      - run:
+          name: Deploy back-end
+          command: |
+            npm run backend:deploy
+workflows:
+  build-deploy-workflow:
+    jobs:
+      - build-deploy-frontend
+      - build-deploy-backend
