@@ -19,16 +19,10 @@ Live application: [Click Here](http://udagrambucket112.s3-website-us-east-1.amaz
  1. Alteration to the code is committed and pushed to GitHub.
  2. CircleCI picks up the event getting triggered and runs jobs specified in the .circleci/config.yml.
  3. The final step in the job is to upload the latest version of the build to AWS(S3/EB).
-* Please note that there is a pipeline setup for udagram-api and udagram-frontend separately as in a production environment I would see them as separate projects.
 
-Udagram-api build status 
+Udagram build status 
 
-[![Yfelipe](https://circleci.com/gh/Yfelipe/udagram-api.svg?style=shield)](<LINK>)
-
-Udagram-frontend build status
-
-[![Yfelipe](https://circleci.com/gh/Yfelipe/udagram-frontend.svg?style=shield)](<LINK>)
-
+[![Yfelipe](https://circleci.com/gh/Yfelipe/udagram-aws.svg?style=shield)](<LINK>)
 
 ### Documents
 In the docs folder you can find a architecture diagram of the application flow and a deployment CI/CD diagram.  
