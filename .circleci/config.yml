@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Deploy front-end
           command: |
-            npm run deploy
+            npm run frontend:deploy
   build-deploy-backend:
     docker:
       - image: "cimg/base:stable"
